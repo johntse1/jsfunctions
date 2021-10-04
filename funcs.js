@@ -247,7 +247,7 @@ const object1 = {
   
   console.log(Object.grabKeys(object1));
   // expected output: Array ["a", "b", "c"]
-  */
+  
   const object1 = {
     a: 'somestring',
     b: 42,
@@ -256,3 +256,4 @@ const object1 = {
   
   console.log(Object.grabValues(object1));
   // expected output: Array ["somestring", 42, false]
+  */
