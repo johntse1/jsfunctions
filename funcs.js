@@ -41,8 +41,14 @@ Array.prototype.mySome = function(callbackFn) {
 };
 
 // EVERY //
-Array.prototype.myEvery = function() {
-
+Array.prototype.myEvery = function(callbackFn) {
+    const newarr = [];
+    for(let i=0; i<this.length;i++){
+        if(!(callbackFn(this[i],i,this))){
+            return false;
+        }
+    }
+    return true;
 };
 
 // REDUCE //
@@ -108,5 +114,13 @@ const array = [1, 2, 3, 4, 5];
 const even = (element) => element % 2 === 0;
 console.log(array.mySome(even));
 console.log(array.some(even));
+// expected output: true
+
+const isBelowThreshold = (currentValue) => currentValue < 40;
+
+const array1 = [1, 30, 39, 29, 10, 13,48];
+
+console.log(array1.every(isBelowThreshold));
+console.log(array1.myEvery(isBelowThreshold));
 // expected output: true
 */
