@@ -52,8 +52,20 @@ Array.prototype.myEvery = function(callbackFn) {
 };
 
 // REDUCE //
-Array.prototype.myReduce = function() {
-
+Array.prototype.myReduce = function(callbackFn, reducer) {
+    let sum=0;
+    if(reducer!=null){
+        for(let i=0; i<this.length;i++){
+            sum += this[i];
+        }
+        sum+=reducer;
+    }
+    else{        
+        for(let i=0; i<this.length;i++){
+            sum += this[i];
+        }   
+    }
+    return sum;
 };
 
 // INCLUDES //
@@ -124,3 +136,15 @@ console.log(array1.every(isBelowThreshold));
 console.log(array1.myEvery(isBelowThreshold));
 // expected output: true
 */
+const array1 = [1, 2, 3, 4];
+const reducer = (previousValue, currentValue) => previousValue + currentValue;
+
+// 1 + 2 + 3 + 4
+console.log(array1.reduce(reducer));
+console.log(array1.myReduce(reducer));
+// expected output: 10
+
+// 5 + 1 + 2 + 3 + 4
+console.log(array1.reduce(reducer, 5));
+console.log(array1.myReduce(reducer, 5));
+// expected output: 15
