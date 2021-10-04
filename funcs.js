@@ -122,13 +122,21 @@ Array.prototype.myLastIndexOf = function(param) {
 };
 
 // KEYS //
-Object.grabKeys = function() {
-
+Object.grabKeys = function(obj) {
+    const arr = [];
+    for (let temp in obj){
+        arr.push(temp);
+    }
+    return arr;
 };
 
 // VALUES //
-Object.grabValues = function() {
-
+Object.grabValues = function(obj) {
+    const arr = [];
+    for (let temp in obj){
+        arr.push(obj[temp]);
+    }
+    return arr;
 };
 
 //Test
@@ -230,4 +238,21 @@ console.log(animals.myLastIndexOf('Dodo'));
 
 console.log(animals.myLastIndexOf('Tiger'));
 // expected output: 1
-*/
+
+const object1 = {
+    a: 'somestring',
+    b: 42,
+    c: false
+  };
+  
+  console.log(Object.grabKeys(object1));
+  // expected output: Array ["a", "b", "c"]
+  */
+  const object1 = {
+    a: 'somestring',
+    b: 42,
+    c: false
+  };
+  
+  console.log(Object.grabValues(object1));
+  // expected output: Array ["somestring", 42, false]
