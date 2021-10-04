@@ -99,13 +99,26 @@ Array.prototype.myIndexOf = function(param1,param2) {
 };
 
 // PUSH //
-Array.prototype.myPush = function() {
-
+Array.prototype.myPush = function(...args) {
+    let arg_i = 0;
+    let length = this.length;
+  
+    for (let i = length; i < length + args.length; i++) {
+      this[i] = args[arg_i];
+      arg_i++;
+    }
+    return this.length;
 };
 
 // LASTINDEXOF //
-Array.prototype.myLastIndexOf = function() {
-
+Array.prototype.myLastIndexOf = function(param) {
+    let pos = -1;
+    for(let i =0; i < this.length;i++){
+        if(this[i]===param){
+            pos = i;
+        }
+    }
+    return pos;
 };
 
 // KEYS //
@@ -197,4 +210,24 @@ console.log(beasts.myIndexOf('bison', 2));
 console.log(beasts.indexOf('giraffe'));
 console.log(beasts.myIndexOf('giraffe'));
 // expected output: -1
+
+const animals = ['pigs', 'goats', 'sheep'];
+
+const count = animals.myPush('cows');
+console.log(count);
+// expected output: 4
+console.log(animals);
+// expected output: Array ["pigs", "goats", "sheep", "cows"]
+
+animals.myPush('chickens', 'cats', 'dogs');
+console.log(animals);
+// expected output: Array ["pigs", "goats", "sheep", "cows", "chickens", "cats", "dogs"]
+
+const animals = ['Dodo', 'Tiger', 'Penguin', 'Dodo'];
+
+console.log(animals.myLastIndexOf('Dodo'));
+// expected output: 3
+
+console.log(animals.myLastIndexOf('Tiger'));
+// expected output: 1
 */
