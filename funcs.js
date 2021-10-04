@@ -30,8 +30,14 @@ Array.prototype.myFilter = function(callbackFn) {
 };
 
 // SOME //
-Array.prototype.mySome = function() {
-
+Array.prototype.mySome = function(callbackFn) {
+    const newarr = [];
+    for(let i=0; i<this.length;i++){
+        if((callbackFn(this[i],i,this))){
+            return true;
+        }
+    }
+    return false;
 };
 
 // EVERY //
@@ -87,7 +93,7 @@ console.log(map1);
 console.log("map")
 const map2 = arr.map(x=>x*2);
 console.log(map2);
-*/
+
 const words = ['spray', 'limit', 'elite', 'exuberant', 'destruction', 'present'];
 console.log("filter default")
 const result = words.filter(word => word.length > 6);
@@ -96,3 +102,11 @@ console.log("myFilter")
 const result2 = words.myFilter(word => word.length >6);
 console.log(result2);
 // expected output: Array ["exuberant", "destruction", "present"]
+const array = [1, 2, 3, 4, 5];
+
+// checks whether an element is even
+const even = (element) => element % 2 === 0;
+console.log(array.mySome(even));
+console.log(array.some(even));
+// expected output: true
+*/
