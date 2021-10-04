@@ -9,9 +9,14 @@ Array.prototype.myEach = function(callbackFn) {
 };
 
 // MAP //
-Array.prototype.myMap = function() {
-
+Array.prototype.myMap = function(callbackFn) {
+    const newarr = [];
+    for(let i=0; i<this.length;i++){
+        newarr.push(callbackFn(this[i],i,this));
+    }
+    return newarr;
 };
+
 
 // FILTER //
 Array.prototype.myFilter = function() {
@@ -64,8 +69,16 @@ Object.grabValues = function() {
 };
 
 //Test
-console.log("myEach : ") 
+/*console.log("myEach : ") 
 arr.myEach(x=> console.log(x));
 
 console.log("forEach: ")
 arr.forEach(x=> console.log(x));
+
+console.log("myMap")
+const map1 = arr.myMap(x=>x*2);
+console.log(map1);
+console.log("map")
+const map2 = arr.map(x=>x*2);
+console.log(map2);
+*/
