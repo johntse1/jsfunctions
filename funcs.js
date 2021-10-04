@@ -19,8 +19,14 @@ Array.prototype.myMap = function(callbackFn) {
 
 
 // FILTER //
-Array.prototype.myFilter = function() {
-
+Array.prototype.myFilter = function(callbackFn) {
+    const newarr = [];
+    for(let i=0; i<this.length;i++){
+        if((callbackFn(this[i],i,this))){
+            newarr.push(this[i]);
+        }
+    }
+    return newarr;
 };
 
 // SOME //
@@ -82,3 +88,11 @@ console.log("map")
 const map2 = arr.map(x=>x*2);
 console.log(map2);
 */
+const words = ['spray', 'limit', 'elite', 'exuberant', 'destruction', 'present'];
+console.log("filter default")
+const result = words.filter(word => word.length > 6);
+console.log(result);
+console.log("myFilter")
+const result2 = words.myFilter(word => word.length >6);
+console.log(result2);
+// expected output: Array ["exuberant", "destruction", "present"]
