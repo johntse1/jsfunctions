@@ -69,13 +69,33 @@ Array.prototype.myReduce = function(callbackFn, reducer) {
 };
 
 // INCLUDES //
-Array.prototype.myIncludes = function() {
-
+Array.prototype.myIncludes = function(param) {
+    for(let i =0; i < this.length;i++){
+        if(this[i]===param){
+            return true;
+        }
+    }
+    return false;
 };
 
 // INDEXOF //
-Array.prototype.myIndexOf = function() {
-
+Array.prototype.myIndexOf = function(param1,param2) {
+    if(param2==null){
+        for(let i =0; i < this.length;i++){
+            if(this[i]===param1){
+                return i;
+            }
+        }
+        return -1;
+    }
+    else{
+        for(let i =param2; i < this.length;i++){
+            if(this[i]===param1){
+                return i;
+            }
+        }
+        return -1;
+    }
 };
 
 // PUSH //
@@ -135,7 +155,6 @@ const array1 = [1, 30, 39, 29, 10, 13,48];
 console.log(array1.every(isBelowThreshold));
 console.log(array1.myEvery(isBelowThreshold));
 // expected output: true
-*/
 const array1 = [1, 2, 3, 4];
 const reducer = (previousValue, currentValue) => previousValue + currentValue;
 
@@ -148,3 +167,34 @@ console.log(array1.myReduce(reducer));
 console.log(array1.reduce(reducer, 5));
 console.log(array1.myReduce(reducer, 5));
 // expected output: 15
+const array1 = [1, 2, 3];
+
+console.log(array1.includes(2));
+console.log(array1.myIncludes(2));
+// expected output: true
+
+const pets = ['cat', 'dog', 'bat'];
+
+console.log(pets.includes('cat'));
+console.log(pets.myIncludes('cat'));
+// expected output: true
+
+console.log(pets.includes('at'));
+console.log(pets.myIncludes('at'));
+// expected output: false
+
+const beasts = ['ant', 'bison', 'camel', 'duck', 'bison'];
+
+console.log(beasts.indexOf('bison'));
+console.log(beasts.myIndexOf('bison'));
+// expected output: 1
+
+// start from index 2
+console.log(beasts.indexOf('bison', 2));
+console.log(beasts.myIndexOf('bison', 2));
+// expected output: 4
+
+console.log(beasts.indexOf('giraffe'));
+console.log(beasts.myIndexOf('giraffe'));
+// expected output: -1
+*/
